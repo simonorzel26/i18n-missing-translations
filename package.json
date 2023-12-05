@@ -6,9 +6,6 @@
   "scripts": {
     "start": "node checkTranslations.js"
   },
-  "dependencies": {
-    "chalk": "^4.1.0"
-  },
   "bin": {
     "i18n-missing-translations": "./checkTranslations.js"
   }
