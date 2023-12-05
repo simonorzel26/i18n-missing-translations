@@ -21,12 +21,12 @@ Run the script using Node.js. You can specify the path to your locales directory
 ### Basic Usage
 To compare all languages in the specified directory:
 ```
-npm checkTranslations.js /path/to/locales
+i18n-missing-translations /path/to/locales
 ```
 ### Comparing Specific Languages
 To compare specific languages, add the language codes after the path:
 ```
-npm checkTranslations.js /path/to/locales en de
+i18n-missing-translations /path/to/locales en de
 ```
 This will compare only the English (en) and German (de) translations.
 
