@@ -2,7 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk'); // Import chalk
 
-const localesDir = path.join(__dirname, 'public', 'locales'); // Adjust path as needed
+const args = process.argv.slice(2);
+const localesDir = args[0] || path.join(__dirname, 'public', 'locales'); // Default if not provided
+const specificLanguages = args.slice(1);
 
 // Function to read and parse JSON files
 function readJSONFile(filePath) {
@@ -38,11 +40,17 @@ function compareFiles(file1, file2) {
 
 // Main function to execute the script
 function main() {
+  if (!fs.existsSync(localesDir)) {
+    console.error(chalk.red('Locales directory not found:'), localesDir);
+    process.exit(1);
+}
   let translations = {};
   let errorFound = false;
 
   // Read translations from each language directory
-  const languageDirs = fs.readdirSync(localesDir);
+  const languageDirs = fs.readdirSync(localesDir).filter(langDir => 
+    specificLanguages.length === 0 || specificLanguages.includes(langDir)
+  );
   languageDirs.forEach((langDir) => {
     translations[langDir] = {};
     const langPath = path.join(localesDir, langDir);
