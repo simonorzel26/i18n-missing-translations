@@ -6,13 +6,24 @@ const args = process.argv.slice(2);
 const localesDir = args[0] || path.join(__dirname, 'public', 'locales'); // Default if not provided
 const specificLanguages = args.slice(1);
 
+// ANSI color codes
+const colors = {
+  red: '\x1b[31m',
+  green: '\x1b[32m',
+  yellow: '\x1b[33m',
+  blue: '\x1b[34m',
+  magenta: '\x1b[35m',
+  cyan: '\x1b[36m',
+  reset: '\x1b[0m'
+};
+
 // Function to read and parse JSON files
 function readJSONFile(filePath) {
   try {
     const fileContents = fs.readFileSync(filePath, 'utf-8');
     return JSON.parse(fileContents);
   } catch (error) {
-    console.error(chalk.red(`Error reading file ${filePath}:`), error);
+    console.error(`${colors.red}Error reading file ${filePath}:${colors.reset}`, error);
     return null;
   }
 }
@@ -72,14 +83,10 @@ function main() {
             if (missingKeys.length > 0) {
               errorFound = true;
               console.log(
-                chalk.blue(
-                  `Missing translation keys in ${file} from ${chalk.yellow(
-                    lang1.toUpperCase()
-                  )} to ${chalk.green(lang2.toUpperCase())}:`
-                )
+                  `${colors.blue}Missing translation keys in ${file} from ${colors.yellow}${lang1.toUpperCase()}${colors.reset} to ${colors.green}${lang2.toUpperCase()}${colors.reset}:`
               );
               missingKeys.forEach((key) => {
-                console.log(chalk.red(`  - ${key}`));
+                  console.log(`${colors.red}  - ${key}${colors.reset}`);
               });
             }
           }
