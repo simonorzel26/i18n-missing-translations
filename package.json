@@ -1,0 +1,12 @@
+{
+  "name": "i18n-missing-translations",
+  "version": "1.0.0",
+  "description": "Finds and notifies you if translation files and their translation keys are missing in between files.",
+  "main": "checkTranslations.js",
+  "scripts": {
+    "start": "node checkTranslations.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0"
+  }
+}
