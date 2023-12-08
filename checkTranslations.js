@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const chalk = require('chalk'); // Import chalk
 
 const args = process.argv.slice(2);
 const localesDir = args[0] || path.join(__dirname, 'public', 'locales'); // Default if not provided
